@@ -60,9 +60,9 @@ c.execute('''create table if not exists cars (
     id_car integer,
     lifting_capacity numeric(4,2) not null,
     id_cargos int,
-    id_orders int,
+    availability text check(availability in ("Не доступен","Доступен")),
     constraint PK_cars_id_car primary key (id_car),
-    constraint Fk_cars_id_cargos_id_orders foreign key (id_cargos,id_orders) references cargos (id_cargo,id_orders),
+    constraint Fk_cars_id_cargos foreign key (id_cargos) references cargos (id_cargo),
     constraint CK_lifting_capacity Check(lifting_capacity > 100)
 )''')
 
